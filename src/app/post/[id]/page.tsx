@@ -1,10 +1,12 @@
 import Layout from "@/components/layout";
-import Content from "@/modules/home/content";
+import Content from "@/modules/post/content";
 
-export default function Home() {
+const Post = () => {
   return (
     <Layout>
       <Content />
     </Layout>
   );
-}
+};
+
+export default Post;
