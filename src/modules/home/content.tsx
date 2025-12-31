@@ -1,5 +1,5 @@
 import Image from "next/image";
-import CommentBtn  from "./comment-btn";
+import CommentBtn  from "@/modules/home/comment-btn";
 import PostList from "./post-list";
 
 const  Content  = () => {

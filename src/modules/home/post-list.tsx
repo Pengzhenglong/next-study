@@ -11,6 +11,12 @@ const mockPosts: Post[] = [
     content: "Content 1",
     createdAt: 0,
   },
+  {
+    id: "2",
+    title: "Post 2",
+    content: "Content 2",
+    createdAt: 0,
+  }
 ];
 
 const PostList = () => {

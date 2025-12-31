@@ -16,7 +16,7 @@ const CommentBtn = () => {
     What's on your mind?
     </button>
 
-    {/* <CommentEditor isOpen={isOpen} setIsOpen={setIsOpen} /> */}
+    <CommentEditor isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   )
 }
