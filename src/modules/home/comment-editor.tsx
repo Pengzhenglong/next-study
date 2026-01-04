@@ -7,7 +7,6 @@ import {
   DialogTitle,
 } from '@headlessui/react';
 import { useState } from 'react';
-import { type } from '../../../.next/types/routes';
 
 interface CommentEditorProps {
   isOpen: boolean;

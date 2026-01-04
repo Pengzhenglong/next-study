@@ -7,7 +7,7 @@ const mockPost : Post = {
   id: "1",
   title: "Post 1",
   content: "This is the content of Post 1.",
-  createdAt: Date.now(), // createdAt: new Date(),
+   createdAt: 0,
 }
 
 const Content = () => {
