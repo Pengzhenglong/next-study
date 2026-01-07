@@ -28,7 +28,7 @@ const PostList = () => {
           </Link>
       ))}
       <div className="mt-8">
-        <Pagination totalPages={1} />
+        <Pagination totalPages={10} />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { BUSINESS_STATUS_CODE } from '@/config/apiConfig';
+import { BUSINESS_STATUS_CODE } from '@/config/constants';
 
 export function success<T>(
   data: T,
