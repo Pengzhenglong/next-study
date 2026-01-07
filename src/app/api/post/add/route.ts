@@ -5,8 +5,8 @@ import { BUSINESS_STATUS_CODE, DB_NAME } from "@/config/constants";
 import clientPromise from "@/lib/mongodb";
 import { v4 as uuidv4 } from "uuid";
 
-export const POST = withApiHandler(async (request: NextRequest) => {
-  const body = await request.json();
+export const POST = withApiHandler(async (req: NextRequest) => {
+  const body = await req.json();
   const { title, content } = body;
   if (!title || !content) {
     return Response.json(
