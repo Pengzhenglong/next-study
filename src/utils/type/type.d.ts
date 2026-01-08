@@ -1,6 +1,6 @@
 interface Post{
     id: string;
     title: string;
-    constent: string;
+    content: string;
     createdAt: number;
 }
