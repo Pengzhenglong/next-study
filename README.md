@@ -5,6 +5,10 @@ MongoDB 连接字符串
 ```
 mongodb+srv://<db_username>:<db_password>@cluster0.tqpolif.mongodb.net/?appName=Cluster0
 ```
+
+https://account.mongodb.com/  访问mongodb官网创建数据库，数据库IP 为 0.0.0.0/0（允许所有IP访问），创建post_db数据库，创建post集合。
+
+
 # 一、这个课程在讲什么？（一句话版）
 
 > **用 Next.js 从 0 搭一个“可上线的全栈项目”，把前端从 CSR 思维升级到 SSR / Server Components / API 一体化。**
