@@ -8,6 +8,13 @@ mongodb+srv://<db_username>:<db_password>@cluster0.tqpolif.mongodb.net/?appName=
 
 https://account.mongodb.com/  访问mongodb官网创建数据库，数据库IP 为 0.0.0.0/0（允许所有IP访问），创建post_db数据库，创建post集合。
 
+# 使用npm 安装依赖
+
+```bash
+npm install
+```
+不要使用pnpm ,设置 npm 镜像为 https://registry.npmjs.org 
+
 
 # 一、这个课程在讲什么？（一句话版）
 
