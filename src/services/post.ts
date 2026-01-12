@@ -18,3 +18,21 @@ export const getPost = async (id: string) => {
     const resData = await response.json()
     return resData.data;
 }
+
+export const deletePost = async (id: string) => {
+    const response = await fetch(`/api/post/delete`, {
+        method: 'POST',
+        body: JSON.stringify({ id }),
+    })
+    const resData = await response.json()
+    return resData.data;
+}
+
+export const updatePost = async (data: { id: string; title: string; content: string }) => {
+    const response = await fetch(`/api/post/update`, {
+        method: 'POST',
+        body: JSON.stringify(data),
+    })
+    const resData = await response.json()
+    return resData.data;
+}
