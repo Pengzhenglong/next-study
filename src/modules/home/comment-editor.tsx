@@ -7,20 +7,22 @@ import {
   DialogTitle,
 } from '@headlessui/react';
 import { useState } from 'react';
-import { useMutation , useQueryClient} from '@tanstack/react-query';
-import { addPost } from '@/services/post';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { addPost, updatePost } from '@/services/post';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-interface CommentEditorProps {  
+interface CommentEditorProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  post?: Post;
+  onSuccess?: () => void;
 }
-const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+const CommentEditor = ({ isOpen, setIsOpen, post, onSuccess }: CommentEditorProps) => {
+  const [title, setTitle] = useState(post?.title || '');
+  const [content, setContent] = useState(post?.content || '');
 
   const searchParams = useSearchParams();
-  const currentPage = searchParams.get('page') || 1;
+  const currentPage = searchParams.get('page') || "1";
 
   const router = useRouter();
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,14 +51,34 @@ const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
     }
   })
 
+  const { mutate: updatePostMutate, isPending: isUpdating } = useMutation({
+    mutationFn: updatePost,
+    onSuccess: () => {
+      setIsOpen(false);
+      queryClient.invalidateQueries({
+        queryKey: ['posts', currentPage],
+      });
+      if (post) {
+        queryClient.invalidateQueries({
+          queryKey: ['post', post.id],
+        });
+      }
+      onSuccess?.();
+    },
+  });
+
   const onPost = () => {
-    if(isPending) return;
-    if(!title || !content) {
+    if (isPending || isUpdating) return;
+    if (!title || !content) {
       alert('Please enter title and content');
       return;
     }
-    addPostMutate({title, content});
-  }
+    if (post) {
+      updatePostMutate({ id: post.id, title, content });
+    } else {
+      addPostMutate({ title, content });
+    }
+  };
 
   return (
     <Dialog
@@ -69,7 +91,7 @@ const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
 
       <DialogPanel className="max-w-lg z-50 space-y-4 bg-[#131313] border border-white/10 p-4 rounded-lg">
         <DialogTitle className="text-white font-bold text-lg">
-          What's on your mind?
+          What&apos;s on your mind?
         </DialogTitle>
         <input
           placeholder="Titile"
@@ -99,7 +121,7 @@ const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
             onClick={onPost}
             disabled={isPending}
           >
-            {isPending ? 'Posting...' : 'Post'}
+            {isPending || isUpdating ? (post ? 'Updating...' : 'Posting...') : post ? 'Update' : 'Post'}
           </button>
         </div>
       </DialogPanel>
